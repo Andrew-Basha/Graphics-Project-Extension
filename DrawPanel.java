@@ -105,6 +105,27 @@ class DrawPanel extends JPanel implements MouseListener {
         return -1;
     }
 
+    public int goodCard(Hand hand) {
+        for (int i = 0; i < hand.getHand().size(); i++) {
+            for (int j = 0; j < hand.getHand().size(); j++) {
+                if ((hand.getHand().get(i).getSuit().equals(currentCard.getSuit()) && (hand.getHand().get(i).getSuit().equals(hand.getHand().get(j).getSuit()) && i != j)) || (hand.getHand().get(i).getValue().equals(currentCard.getValue()) && (hand.getHand().get(i).getValue().equals(hand.getHand().get(j).getValue()) && i != j))) {
+                    return i;
+                }
+            }
+        }
+        for (int i = 0; i < hand.getHand().size(); i++) {
+            if (hand.getHand().get(i).getSuit().equals(currentCard.getSuit()) || hand.getHand().get(i).getValue().equals(currentCard.getValue())) {
+                return i;
+            }
+        }
+        for (int i = 0; i < hand.getHand().size(); i++) {
+            if (hand.getHand().get(i).getSuit().equals("joker") || currentCard.getSuit().equals("joker")) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public void mousePressed(MouseEvent e) {
         if (!gameOver) {
             if (playerTurn) {
@@ -124,7 +145,7 @@ class DrawPanel extends JPanel implements MouseListener {
                     }
                 }
             } else {
-                if (!enemyPlay(playableCard(enemyHand))) {
+                if (!enemyPlay(goodCard(enemyHand))) {
                     enemyHand.drawCard();
                 }
                 playerTurn = !playerTurn;
