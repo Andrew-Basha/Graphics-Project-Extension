@@ -11,6 +11,7 @@ class DrawPanel extends JPanel implements MouseListener {
     private Hand playerHand;
     private Hand enemyHand;
     private Card currentCard;
+    private boolean playerTurn;
     Rectangle button1 = new Rectangle(235, 262, 100, 40);
 
     public DrawPanel() {
@@ -18,10 +19,14 @@ class DrawPanel extends JPanel implements MouseListener {
         playerHand = new Hand(true);
         enemyHand = new Hand(false);
         currentCard = Hand.getDeck().drawCard();
+        if (Math.random() >= .5) {
+            playerTurn = true;
+        } else {
+            playerTurn = false;
+        }
         this.addMouseListener(this);
     }
 
-    static boolean playerTurn = true;
     static boolean gameOver = false;
 
     protected void paintComponent(Graphics g) {
