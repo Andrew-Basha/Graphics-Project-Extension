@@ -66,6 +66,9 @@ class DrawPanel extends JPanel implements MouseListener {
         }
         if (playerHand.getHand().isEmpty()) {
             g.drawString("Player Wins!", 120, 360);
+            for (int i = 0; i < enemyHand.getHand().size(); i++) {
+                enemyHand.getHand().get(i).reveal();
+            }
         } else if (enemyHand.getHand().isEmpty()) {
             g.drawString("Enemy Wins!", 120, 210);
         }
