@@ -124,7 +124,7 @@ class DrawPanel extends JPanel implements MouseListener {
             }
         }
         for (int i = 0; i < hand.getHand().size(); i++) {
-            if ((hand.getHand().get(i).getSuit().equals("joker") && ((otherHand.getHand().size() > 2 && Math.random() >= .25)) || hand.getHand().size() > 1) || currentCard.getSuit().equals("joker")) {
+            if ((hand.getHand().get(i).getSuit().equals("joker") && (((otherHand.getHand().size() > 2 && Math.random() >= .25)) || hand.getHand().size() > 1)) || currentCard.getSuit().equals("joker")) {
                 return i;
             }
         }
